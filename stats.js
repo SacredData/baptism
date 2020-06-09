@@ -17,14 +17,20 @@ function parseStats(st) {
       valid: stats[8] <= 0.25 && stats[8] >= 0.03 // low: -30dB; high: -12dB
     }
   }
-  debug(statsObj)
   return statsObj
 }
 
 function main(file, cb) {
+  const statsObj = {}
   const soxCmd = spawn('sox', [ path.resolve(file), '-n', 'stat' ])
+  soxCmd.on('error', err => { throw new Error(err) })
   soxCmd.stderr.on('data', d => {
-    cb(null, parseStats(d))
+    Object.assign(statsObj, parseStats(d))
+  })
+  soxCmd.on('close', (code) => {
+    debug('exitcode', code)
+    debug(statsObj)
+    cb(null, statsObj)
   })
 }
 
