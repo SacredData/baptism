@@ -23,6 +23,17 @@ class Track extends Resource {
     fs.close(this.fd, cb)
   }
 
+  size (cb) {
+    this.open((err) => {
+      if (err) return cb(err)
+      if (!this.active(cb)) return
+      fs.fstat(this.fd, (err, st) => {
+        if (err) return this.inactive(cb, err)
+        this.inactive(cb, null, st.size)
+      })
+    })
+  }
+
   stats (cb) {
     this.open((err) => {
       if (err) return cb(err)
