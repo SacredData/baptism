@@ -35,13 +35,4 @@ class Track extends Resource {
   }
 }
 
-/*
-const t = new Track('./test1.wav')
-
-t.stats((err, st) => {
-    if (err) throw err
-    console.log('stats:', st)
-})
-*/
-
 module.exports = Track
