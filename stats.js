@@ -9,7 +9,7 @@ function parseStats(st) {
     peak: {
       db: 20 * Math.log10( stats[3] ),
       value: stats[3],
-      valid: stats[3] <= 0.7 // 0.5 === -3dBFS
+      valid: stats[3] <= 0.7 // -3dBFS
     },
     rms: {
       db: 20 * Math.log10( stats[8] ),
