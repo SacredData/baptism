@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "little-process-box": "^0.2.3"
+    "debug": "^4.1.1",
+    "little-process-box": "^0.2.3",
+    "nanoresource": "^1.3.0"
   }
 }
