@@ -3,3 +3,12 @@
 
 ## Status
 > WIP
+
+## Installation
+
+```sh
+$ npm -i baptism
+```
+
+## API
+> WIP
