@@ -21,15 +21,17 @@ function parseStats(st) {
 }
 
 function main(file, cb) {
+  let statsStr = ''
   const statsObj = {}
   const soxCmd = spawn('sox', [ path.resolve(file), '-n', 'stat' ])
   soxCmd.on('error', err => { throw new Error(err) })
   soxCmd.stderr.on('data', d => {
-    Object.assign(statsObj, parseStats(d))
+    statsStr += d
   })
   soxCmd.on('close', (code) => {
     debug('exitcode', code)
     debug(statsObj)
+    Object.assign(statsObj, parseStats(statsStr))
     cb(null, statsObj)
   })
 }
