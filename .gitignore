@@ -64,3 +64,5 @@ package-lock.json
 /*.mkv
 /*.flac
 /*.wav
+
+test/*
