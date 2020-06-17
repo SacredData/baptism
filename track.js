@@ -1,3 +1,4 @@
+const ffmpeg = require('fluent-ffmpeg')
 const fs = require('fs')
 const getStats = require('./stats')
 const Resource = require('nanoresource')
@@ -21,6 +22,43 @@ class Track extends Resource {
   _close (cb) {
     console.log('Now closing file ...')
     fs.close(this.fd, cb)
+  }
+
+  silence (cb) {
+    this.open((err) => {
+      if (err) return cb(err)
+      const silences = []
+
+      function parseSilences(sils) {
+        const starts = []
+        const maps = new Map()
+        for (const s of sils) {
+          if (s.includes('silence_start: ')) {
+            starts.push(parseFloat(s.split('silence_start: ')[1]))
+          } else if (s.includes('silence_duration: ')) {
+            maps[starts.pop()] = s.split('silence_duration: ')[1]
+          }
+        }
+        return maps
+      }
+
+      const ffmpegCmd = ffmpeg(this.filename)
+        .audioFilters('silencedetect=n=-60dB:d=1')
+        .format('null')
+        .output('-')
+        .on('stderr', d => {
+          if (`${d}`.includes('silencedetect')) {
+            silences.push(`${d}`)
+          }
+        })
+        .on('error', err => { return this.inactive(cb, err) })
+        .on('end', () => {
+          console.log('finished', silences)
+          this.inactive(cb, null, parseSilences(silences))
+        })
+
+      ffmpegCmd.run()
+    })
   }
 
   size (cb) {
