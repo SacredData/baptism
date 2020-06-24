@@ -11,10 +11,11 @@ class Album extends Pool {
     this.sources = fs.readdirSync(this.dir).map(p => `${this.dir}/${p}`)
     for (const source of this.sources) {
       const newTrack = new Track(source)
-      newTrack.stats()
+      newTrack.stats() // @TODO Move this to its own method, use the Batch module
       this.add(newTrack)
     }
   }
+
 }
 
 module.exports = Album
