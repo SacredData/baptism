@@ -54,7 +54,9 @@ class Track extends Resource {
         .on('error', err => { return this.inactive(cb, err) })
         .on('end', () => {
           console.log('finished', silences)
-          this.inactive(cb, null, parseSilences(silences))
+          const parsedSilences = parseSilences(silences)
+          this.silences = parsedSilences
+          this.inactive(cb, null, parsedSilences)
         })
 
       ffmpegCmd.run()

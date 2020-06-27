@@ -1,4 +1,5 @@
 const fs = require('fs')
+const os = require('os')
 const path = require('path')
 const Pool = require('nanoresource-pool')
 const Track = require('./track')
@@ -11,11 +12,11 @@ class Album extends Pool {
     this.sources = fs.readdirSync(this.dir).map(p => `${this.dir}/${p}`)
     for (const source of this.sources) {
       const newTrack = new Track(source)
-      newTrack.stats() // @TODO Move this to its own method, use the Batch module
+      newTrack.stats()
+      newTrack.silence()
       this.add(newTrack)
     }
   }
-
 }
 
 module.exports = Album
