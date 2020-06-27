@@ -1,5 +1,7 @@
+const debug = require('debug')('baptism:track')
 const ffmpeg = require('fluent-ffmpeg')
 const fs = require('fs')
+const getSpectrogram = require('./spectrogram')
 const getStats = require('./stats')
 const Resource = require('nanoresource')
 
@@ -40,7 +42,6 @@ class Track extends Resource {
 
       function parseSilences(sils) {
         const starts = []
-        // const maps = new Map()
         const maps = {}
         for (const s of sils) {
           if (s.includes('silence_start: ')) {
@@ -63,7 +64,7 @@ class Track extends Resource {
         })
         .on('error', err => { return this.inactive(cb, err) })
         .on('end', () => {
-          // console.log('finished', silences)
+          debug('finished', silences)
           const parsedSilences = parseSilences(silences)
           this.silences = parsedSilences
           this.inactive(cb, null, parsedSilences)
@@ -84,11 +85,24 @@ class Track extends Resource {
     })
   }
 
+  spectrogram (cb) {
+    this.open((err) => {
+      if (err) return cb(err)
+      if (!this.active(cb)) return
+      getSpectrogram(this.filename, (err, sp) => {
+        if (err) return cb(err)
+        this.spectrogram = sp
+        this.inactive(cb, null, sp)
+      })
+    })
+  }
+
   stats (cb) {
     this.open((err) => {
       if (err) return cb(err)
       if (!this.active(cb)) return
       getStats(this.filename, (err, st) => {
+        if (err) return cb(err)
         this.stats = st
         this.inactive(cb, null, st)
       })
