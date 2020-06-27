@@ -8,6 +8,7 @@ class Track extends Resource {
     super()
     this.filename = source
     this.fd = 0
+    this.validations = {}
   }
 
   _open (cb) {
@@ -29,9 +30,18 @@ class Track extends Resource {
       if (err) return cb(err)
       const silences = []
 
+      function validateSilences(silObj) {
+        const silenceStarts = Object.keys(silObj)
+        return {
+          start: Number(silenceStarts.shift()) === 0,
+          end: Number(silenceStarts.pop()) > 0
+        }
+      }
+
       function parseSilences(sils) {
         const starts = []
-        const maps = new Map()
+        // const maps = new Map()
+        const maps = {}
         for (const s of sils) {
           if (s.includes('silence_start: ')) {
             starts.push(parseFloat(s.split('silence_start: ')[1]))
@@ -39,7 +49,7 @@ class Track extends Resource {
             maps[starts.pop()] = s.split('silence_duration: ')[1]
           }
         }
-        return maps
+        return [ maps, validateSilences(maps) ]
       }
 
       const ffmpegCmd = ffmpeg(this.filename)
@@ -53,7 +63,7 @@ class Track extends Resource {
         })
         .on('error', err => { return this.inactive(cb, err) })
         .on('end', () => {
-          console.log('finished', silences)
+          // console.log('finished', silences)
           const parsedSilences = parseSilences(silences)
           this.silences = parsedSilences
           this.inactive(cb, null, parsedSilences)
