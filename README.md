@@ -27,12 +27,6 @@ newAlbum.probe((err, res) => {
 ```
 
 ```
-Now opening file ... /home/gwohl/code/sacreddata/baptism/test/submission1/A1 Radiate (Premaster).wav
-Now opening file ... /home/gwohl/code/sacreddata/baptism/test/submission1/A2 Desire (ft. Julien Mier) (Premaster).wav
-Now opening file ... /home/gwohl/code/sacreddata/baptism/test/submission1/A3 Unkempt (Premaster).wav
-Now opening file ... /home/gwohl/code/sacreddata/baptism/test/submission1/A4 Hole (Premaster).wav
-Now opening file ... /home/gwohl/code/sacreddata/baptism/test/submission1/B1 Bliss (Premaster).wav
-Now opening file ... /home/gwohl/code/sacreddata/baptism/test/submission1/B2 Cracks In Surface:Ending (Premaster).wav
 {
   '/home/gwohl/code/sacreddata/baptism/test/submission1/A2 Desire (ft. Julien Mier) (Premaster).wav': {
     duration: 193.685601,
