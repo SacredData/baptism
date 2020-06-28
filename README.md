@@ -69,6 +69,11 @@ Returns a file path to a PNG of the file's spectrogram.
 An object, which represents a single audio file. Extends
 [nanoresource](https://github.com/little-core-labs/nanoresource).
 
+#### `track.silence(callback)`
+
+Checks the `Track` object for silence at the beginning and end of the file.
+Callback returns an object describing the silences as well as validation results.
+
 #### `track.spectrogram(callback)`
 
 Calls `bap.spectrogram()` on the `Track` object. `track.spectrogram` becomes the
