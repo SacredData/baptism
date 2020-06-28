@@ -1,3 +1,4 @@
+const Batch = require('batch')
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
@@ -11,17 +12,27 @@ class Album extends Pool {
     this.dir = path.resolve(dir)
     this.sources = fs.readdirSync(this.dir).map(p => `${this.dir}/${p}`)
     for (const source of this.sources) {
-      const newTrack = new Track(source)
-      newTrack.stats()
-      newTrack.silence()
-      this.add(newTrack)
+      this.add(new Track(source))
     }
   }
-  validate() {
-    return {
-      dynamics: this.query().every(st => st.stats.peak.valid && st.stats.rms.valid),
-      silences: this.query().every(st => st.silences[1].start && st.silences[1].end)
+
+  probe(callback) {
+    const probes = {}
+    const batch = new Batch().concurrency(2)
+    for (const source of this.query()) {
+      batch.push((next) => {
+        source.stats((err, info) => {
+          if (err) { return next(err) }
+          probes[source.filename] = info
+          next(null)
+        })
+      })
     }
+
+    batch.end((err) => {
+      if (err) { return callback(err)  }
+      callback(null, probes)
+    })
   }
 }
 
