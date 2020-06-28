@@ -10,7 +10,7 @@ class Album extends Pool {
     super(Track)
     this.duration = 0.0
     this.dir = path.resolve(dir)
-    this.sources = fs.readdirSync(this.dir).map(p => `${this.dir}/${p}`)
+    this.sources = fs.readdirSync(this.dir).map(p => `${this.dir}/${p}`).filter(f => path.extname(f) === '.wav')
     for (const source of this.sources) {
       this.add(new Track(source))
     }
@@ -24,7 +24,10 @@ class Album extends Pool {
         source.stats((err, info) => {
           if (err) { return next(err) }
           probes[source.filename] = info
-          next(null)
+          source.silence((err) => {
+            if (err) debug(err)
+            next(null)
+          })
         })
       })
     }
