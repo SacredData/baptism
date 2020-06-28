@@ -13,7 +13,7 @@ class Track extends Resource {
   }
 
   _open (cb) {
-    console.log('Now opening file ...', this.filename)
+    debug('Now opening file ...', this.filename)
     fs.open(this.filename, 'r', (err, fd) => {
       if (err) return cb(err)
       this.fd = fd
@@ -22,7 +22,7 @@ class Track extends Resource {
   }
 
   _close (cb) {
-    console.log('Now closing file ...')
+    debug('Now closing file ...')
     fs.close(this.fd, cb)
   }
 
@@ -91,7 +91,6 @@ class Track extends Resource {
       getSpectrogram(this.filename, (err, sp) => {
         if (err) return cb(err)
         this.spectrogram = sp
-        // this.spectrogramBytes = fs.readFileSync(this.spectrogram, {encoding: 'base64'})
         this.inactive(cb, null, sp)
       })
     })
