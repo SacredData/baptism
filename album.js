@@ -31,6 +31,9 @@ class Album extends Pool {
 
     batch.end((err) => {
       if (err) { return callback(err)  }
+      this.duration += Object.keys(probes).map(p => probes[p].duration).reduce(
+        (a, b) => a + b
+      )
       callback(null, probes)
     })
   }
