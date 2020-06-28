@@ -52,8 +52,8 @@ An object, which provides one or more `Track` objects. Extends
 #### `album.probe(callback)`
 
 Batch processes each `Track` in the `Album`, calling the `Track` object's
-`track.stats()` method. Callback provides an object containing each `Track`
-object's probe results.
+`track.stats()`, `track.silence()`, and `track.spectrogram()` methods. Callback
+provides an object containing each `Track` object's probe results.
 
 ### `bap.stats(filename, callback)`
 
