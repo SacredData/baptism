@@ -1,4 +1,7 @@
 {
+  "silence": {
+    "flags": "silencedetect=n=-60dB:d=1"
+  },
   "spectrogram": {
     "flags": [
       "-x", "960", "-Y", "550"

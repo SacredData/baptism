@@ -1,4 +1,5 @@
 const debug = require('debug')('baptism:track')
+const flags = require('./flags.json')
 const ffmpeg = require('fluent-ffmpeg')
 const fs = require('fs')
 const getSpectrogram = require('./spectrogram')
@@ -53,7 +54,7 @@ class Track extends Resource {
       }
 
       const ffmpegCmd = ffmpeg(this.filename)
-        .audioFilters('silencedetect=n=-60dB:d=1')
+        .audioFilters(flags.silence.flags)
         .format('null')
         .output('-')
         .on('stderr', d => {
