@@ -10,7 +10,6 @@ class Track extends Resource {
     super()
     this.filename = source
     this.fd = 0
-    this.validations = {}
   }
 
   _open (cb) {
