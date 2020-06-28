@@ -14,7 +14,7 @@ function main(file, cb) {
     '-o',
     outFile
   ])
-  soxCmd.on('error', err => { throw new Error(err) })
+  soxCmd.on('error', err => { cb(new Error(err)) })
   soxCmd.on('close', (code) => {
     debug('exitcode', code)
     cb(null, outFile)

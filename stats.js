@@ -24,7 +24,7 @@ function main(file, cb) {
   let statsStr = ''
   const statsObj = {}
   const soxCmd = spawn('sox', [ path.resolve(file), '-n', 'stat' ])
-  soxCmd.on('error', err => { throw new Error(err) })
+  soxCmd.on('error', err => { cb(new Error(err)) })
   soxCmd.stderr.on('data', d => {
     statsStr += d
   })
