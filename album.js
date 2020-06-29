@@ -11,8 +11,11 @@ class Album extends Pool {
     this.duration = 0.0
     this.dir = path.resolve(dir)
     this.sources = fs.readdirSync(this.dir).map(p => `${this.dir}/${p}`).filter(f => path.extname(f) === '.wav')
+
+    let counter = 0
     for (const source of this.sources) {
-      this.add(new Track(source))
+      counter++
+      this.add(new Track(source, { trackNumber: counter }))
     }
   }
 
