@@ -52,8 +52,9 @@ An object, which provides one or more `Track` objects. Extends
 #### `album.probe(callback)`
 
 Batch processes each `Track` in the `Album`, calling the `Track` object's
-`track.stats()`, `track.silence()`, and `track.spectrogram()` methods. Callback
-provides an object containing each `Track` object's probe results.
+`track.stats()`, `track.silence()`, `track.soxi()` and `track.spectrogram()`
+methods. Callback provides an object containing each `Track` object's probe
+results.
 
 ### `bap.stats(filename, callback)`
 
@@ -69,10 +70,19 @@ Returns a file path to a PNG of the file's spectrogram.
 An object, which represents a single audio file. Extends
 [nanoresource](https://github.com/little-core-labs/nanoresource).
 
+#### `track.size(callback)`
+
+Callback returns the file size of the file belonging to the `Track`.
+
 #### `track.silence(callback)`
 
 Checks the `Track` object for silence at the beginning and end of the file.
 Callback returns an object describing the silences as well as validation results.
+
+#### `track.soxi(callback)`
+
+Runs a `soxi` analysis on the filename belonging to the `Track`. Callback
+returns the relevant `soxi` information which is also written to `Track.format`.
 
 #### `track.spectrogram(callback)`
 
