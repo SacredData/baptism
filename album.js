@@ -10,7 +10,8 @@ class Album extends Pool {
     super(Track)
     this.duration = 0.0
     this.dir = path.resolve(dir)
-    this.sources = fs.readdirSync(this.dir).map(p => `${this.dir}/${p}`).filter(f => path.extname(f) === '.wav')
+    this.sources = fs.readdirSync(this.dir).map(p => `${this.dir}/${p}`)
+      .filter(f => path.extname(f) === '.wav')
 
     let counter = 0
     for (const source of this.sources) {
@@ -40,9 +41,11 @@ class Album extends Pool {
 
     batch.end((err) => {
       if (err) { return callback(err)  }
-      this.duration += Object.keys(probes).map(p => probes[p].duration).reduce(
-        (a, b) => a + b
-      )
+
+      // Sum duration of all tracks
+      this.duration += Object.keys(probes).map(p => probes[p].duration)
+        .reduce((a, b) => a + b)
+
       callback(null, probes)
     })
   }
@@ -57,6 +60,7 @@ class Album extends Pool {
       silences: this.query().every(tr => tr.silences.start && tr.silences.end),
       stats: this.query().every(tr => tr.stats.peak.valid && tr.stats.rms.valid)
     }
+
     return validations
   }
 }
