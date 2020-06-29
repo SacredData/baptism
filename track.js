@@ -8,10 +8,14 @@ const getStats = require('./stats')
 const Resource = require('nanoresource')
 
 class Track extends Resource {
-  constructor(source) {
+  constructor(source, opts = {}) {
     super()
     this.filename = source
     this.fd = 0
+
+    if (opts.trackNumber) {
+      this.trackNumber = opts.trackNumber
+    }
   }
 
   _open (cb) {
