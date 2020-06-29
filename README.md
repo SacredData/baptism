@@ -60,6 +60,15 @@ results.
 Returns object containing validation information for all the `Track` objects
 added to the `Album`.
 
+### `bap.soxi(filename, callback)`
+Callback returns an object containing media file formatting metadata, such as
+bit depth, sampling frequency, and channel count. Information is provided by
+the `soxi` command line application, provided by the
+[SoX](http://sox.sourceforge.net/) application.
+
+This method is meant to be called by the `Track` class, so do not use this
+method directly in your code.
+
 ### `bap.stats(filename, callback)`
 
 Returns an object containing dynamics analysis measurements provided by the 

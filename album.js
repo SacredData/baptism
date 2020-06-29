@@ -1,4 +1,5 @@
 const Batch = require('batch')
+const debug = require('debug')('baptism:album')
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
@@ -16,6 +17,7 @@ class Album extends Pool {
     let counter = 0
     for (const source of this.sources) {
       counter++
+      debug('track counter', counter)
       this.add(new Track(source, { trackNumber: counter }))
     }
   }

@@ -3,9 +3,10 @@ const Track = require('./track')
 
 const flags = require('./flags.json')
 
+const soxi = require('./soxi')
 const stats = require('./stats')
 const spectrogram = require('./spectrogram')
 
 module.exports = {
-  Album, Track, flags, stats, spectrogram
+  Album, Track, flags, soxi, stats, spectrogram
 }
