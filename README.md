@@ -69,10 +69,11 @@ Returns an object containing dynamics analysis measurements provided by the
 
 Returns a file path to a PNG of the file's spectrogram.
 
-### `track = new bap.Track(filename)`
+### `track = new bap.Track(filename, [opts])`
 
 An object, which represents a single audio file. Extends
-[nanoresource](https://github.com/little-core-labs/nanoresource).
+[nanoresource](https://github.com/little-core-labs/nanoresource). Accepts an
+optional options object to specify track number, via `opts.trackNumber`.
 
 #### `track.size(callback)`
 
