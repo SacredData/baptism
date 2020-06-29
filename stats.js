@@ -30,7 +30,6 @@ function main(file, cb) {
   })
   soxCmd.on('close', (code) => {
     debug('exitcode', code)
-    debug(statsObj)
     Object.assign(statsObj, parseStats(statsStr))
     cb(null, statsObj)
   })

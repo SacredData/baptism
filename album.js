@@ -26,7 +26,10 @@ class Album extends Pool {
           probes[source.filename] = info
           source.silence((err) => {
             if (err) debug(err)
-            next(null)
+            source.soxi((err) => {
+              if (err) debug(err)
+              next(null)
+            })
           })
         })
       })

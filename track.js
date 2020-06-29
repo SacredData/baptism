@@ -2,6 +2,7 @@ const debug = require('debug')('baptism:track')
 const flags = require('./flags.json')
 const ffmpeg = require('fluent-ffmpeg')
 const fs = require('fs')
+const getSoxi = require('./soxi')
 const getSpectrogram = require('./spectrogram')
 const getStats = require('./stats')
 const Resource = require('nanoresource')
@@ -81,6 +82,18 @@ class Track extends Resource {
       fs.fstat(this.fd, (err, st) => {
         if (err) return this.inactive(cb, err)
         this.inactive(cb, null, st.size)
+      })
+    })
+  }
+
+  soxi (cb) {
+    this.open((err) => {
+      if (err) return cb(err)
+      if (!this.active(cb)) return
+      getSoxi(this.filename, (err, so) => {
+        if (err) return cb(err)
+        this.format = so
+        this.inactive(cb, null, so)
       })
     })
   }
