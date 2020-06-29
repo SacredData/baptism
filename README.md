@@ -23,7 +23,6 @@ const newAlbum = new bap.Album('./')
 
 newAlbum.probe((err, res) => {
   console.log(res)
-  
 })
 ```
 
@@ -55,6 +54,11 @@ Batch processes each `Track` in the `Album`, calling the `Track` object's
 `track.stats()`, `track.silence()`, `track.soxi()` and `track.spectrogram()`
 methods. Callback provides an object containing each `Track` object's probe
 results.
+
+#### `album.validate`
+
+Returns object containing validation information for all the `Track` objects
+added to the `Album`.
 
 ### `bap.stats(filename, callback)`
 
