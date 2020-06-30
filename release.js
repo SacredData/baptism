@@ -1,4 +1,5 @@
 const Album = require('./album')
+const Track = require('./track')
 
 class Release {
   constructor(opts={}) {
