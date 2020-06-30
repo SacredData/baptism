@@ -108,7 +108,9 @@ class Track extends Resource {
       if (!this.active(cb)) return
       getSpectrogram(this.filename, (err, sp) => {
         if (err) return cb(err)
-        this.spectrogram = sp
+        this.spectrogramFile = sp
+        this.spectrogram = Buffer.from(fs.readFileSync(this.spectrogramFile))
+          .toString('base64')
         this.inactive(cb, null, sp)
       })
     })
