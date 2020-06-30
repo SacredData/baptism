@@ -48,6 +48,8 @@ class Album extends Pool {
       this.duration += Object.keys(probes).map(p => probes[p].duration)
         .reduce((a, b) => a + b)
 
+      this.validate
+
       callback(null, probes)
     })
   }
@@ -62,6 +64,8 @@ class Album extends Pool {
       silences: this.query().every(tr => tr.silences.start && tr.silences.end),
       stats: this.query().every(tr => tr.stats.peak.valid && tr.stats.rms.valid)
     }
+
+    this.ready = validations
 
     return validations
   }
