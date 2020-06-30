@@ -11,6 +11,8 @@ function main(file, cb) {
     '-n',
     'spectrogram',
     ...spectrogramFlags,
+    '-t',
+    path.basename(uri),
     '-o',
     outFile
   ])
