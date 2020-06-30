@@ -23,6 +23,13 @@ class Release {
   }
 }
 
+class CD extends Release {
+  constructor(opts={}) {
+    super()
+    this.durationLimit = 4800
+  }
+}
+
 class Digital extends Release {
   constructor(opts={}) {
     super(opts)
@@ -32,12 +39,6 @@ class Digital extends Release {
 class Vinyl extends Release {
   constructor(opts={}) {
     super(opts)
-  }
-}
-
-class CD extends Release {
-  constructor(opts={}) {
-    super()
   }
 }
 

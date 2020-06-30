@@ -80,7 +80,35 @@ Returns an object containing dynamics analysis measurements provided by the
 
 ### `bap.spectrogram(filename, callback)`
 
-Returns a file path to a PNG of the file's spectrogram.
+Returns a file path to a PNG of the file's spectrogram
+
+### `const Release = bap.Release`
+
+Class representations of physical and digital audio media products.
+
+#### `Release.add(item)`
+
+Add an `Album` or a single `Track` to the `Release` object.
+
+#### `const cd = new Release.CD([opts])`
+
+An object which represents a CD album release product. Extends `Release`.
+
+#### `const digital = new Release.Digital([opts])`
+
+An object which represents a digital release product. Extends `Release`. 
+
+#### `const vinyl = new Release.Digital([opts])`
+
+An object which represents a vinyl release product. Extends `Release`.
+
+Optional `opts` object accepts the following flags:
+
+`opts.size`: Declare the size of the vinyl disc. Accepted values are `7`, `10`,
+or `12`.
+
+`opts.speed`: Declare the rotation speed of the vinyl disc. Accepted values are
+`33` or `45`.
 
 ### `const track = new bap.Track(filename, [opts])`
 
