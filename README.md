@@ -140,7 +140,9 @@ returns the relevant `soxi` information which is also written to `Track.format`.
 #### `track.spectrogram(callback)`
 
 Calls `bap.spectrogram()` on the `Track` object. `track.spectrogram` becomes the
-file path to the PNG file returned by the `bap.spectrogram()` method.
+base64 byte-string of the generated PNG image. When finished, the output file
+path to the PNG is written returned by the callback, as well as written to
+`track.spectrogramFile`.
 
 #### `track.stats(callback)`
 
