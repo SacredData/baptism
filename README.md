@@ -60,6 +60,10 @@ results.
 Returns object containing validation information for all the `Track` objects
 added to the `Album`.
 
+### `flags = bap.flags`
+
+An object containing command line flags for various spawned child processes.
+
 ### `bap.soxi(filename, callback)`
 Callback returns an object containing media file formatting metadata, such as
 bit depth, sampling frequency, and channel count. Information is provided by
