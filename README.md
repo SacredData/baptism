@@ -60,7 +60,7 @@ results.
 Returns object containing validation information for all the `Track` objects
 added to the `Album`.
 
-### `flags = bap.flags`
+### `const flags = bap.flags`
 
 An object containing command line flags for various spawned child processes.
 
@@ -82,7 +82,7 @@ Returns an object containing dynamics analysis measurements provided by the
 
 Returns a file path to a PNG of the file's spectrogram.
 
-### `track = new bap.Track(filename, [opts])`
+### `const track = new bap.Track(filename, [opts])`
 
 An object, which represents a single audio file. Extends
 [nanoresource](https://github.com/little-core-labs/nanoresource). Accepts an
