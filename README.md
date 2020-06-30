@@ -5,6 +5,13 @@ Baptism is the first stage in the SACRED AUDIO automated workflow. It
 objectifies WAV files and provides interfaces to `ffmpeg` and `sox` to produce
 industry-compliant analyses of the audio data.
 
+The module can serve as the backend for applications where the main use case is
+to accept, analyze, and QC audio file submissions. By providing easy interfaces
+for audio file introspection, generation of visual assets from audio file
+measurements, and validation to standard audio industry specifications, Baptism
+aims to support most of the basic considerations that are necessary to iron out
+new audio and music projects.
+
 ## Status
 > In Development
 
