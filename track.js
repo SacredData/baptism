@@ -59,7 +59,7 @@ class Track extends Resource {
       }
 
       const ffmpegCmd = ffmpeg(this.filename)
-        .audioFilters(flags.silence.flags)
+        .audioFilters(flags.silence)
         .format('null')
         .output('-')
         .on('stderr', d => {
@@ -125,6 +125,30 @@ class Track extends Resource {
         this.stats = st
         this.inactive(cb, null, st)
       })
+    })
+  }
+
+  waveform (cb) {
+    this.open((err) => {
+      if (err) return cb(err)
+      if (!this.active(cb)) return
+
+      const waveformPath = `${this.filename}_waveform.png`
+
+      const ffmpegCmd = ffmpeg(this.filename)
+        .complexFilter(flags.waveform)
+        .output(waveformPath)
+        .on('error', err => { return this.inactive(cb, err) })
+        .on('end', () => {
+          debug('waveform finished', waveformPath)
+          this.waveformFile = waveformPath
+          this.waveform = Buffer.from(fs.readFileSync(this.waveformFile))
+            .toString('base64')
+          this.inactive(cb, null, waveformPath)
+        })
+
+      ffmpegCmd.run()
+
     })
   }
 }
