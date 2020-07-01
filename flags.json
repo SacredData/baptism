@@ -1,10 +1,5 @@
 {
-  "silence": {
-    "flags": "silencedetect=n=-60dB:d=1"
-  },
-  "spectrogram": {
-    "flags": [
-      "-x", "960", "-Y", "550", "-c", ""
-    ]
-  }
+  "silence": "silencedetect=n=-60dB:d=1",
+  "spectrogram": [ "-x", "960", "-Y", "550", "-c", "" ],
+  "waveform": "showwavespic=s=640x120"
 }
