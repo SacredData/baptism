@@ -16,6 +16,8 @@ class Release {
     } else if (a instanceof Track) {
       this.tracks.push(a)
       this.duration += a.duration
+    } else {
+      throw new Error('Must be an Album or a Track')
     }
   }
 }
