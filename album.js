@@ -65,9 +65,7 @@ class Album extends Pool {
       stats: this.query().every(tr => tr.stats.peak.valid && tr.stats.rms.valid)
     }
 
-    this.ready = validations
-
-    return validations
+    return this.ready = validations
   }
 }
 
