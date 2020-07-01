@@ -1,7 +1,7 @@
 const debug = require('debug')('baptism:spectrogram')
 const path = require('path')
 const { spawn } = require('child_process')
-const spectrogramFlags = require('./flags.json').spectrogram.flags
+const spectrogramFlags = require('./flags.json').spectrogram
 
 function main(file, cb) {
   const uri = path.resolve(file)
