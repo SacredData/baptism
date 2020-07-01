@@ -7,30 +7,6 @@ class Release {
     this.albums = []
     this.duration = 0.0
 
-    if (opts.size) {
-      switch (opts.size) {
-        case 7:
-        case 10:
-        case 12:
-          this.size = opts.size
-          break
-        default:
-          throw new Error('Invalid size. Must be one of [7, 10, 12]')
-          break
-      }
-    }
-
-    if (opts.speed) {
-      switch (opts.speed) {
-        case 33:
-        case 45:
-          this.speed = opts.speed
-          break
-        default:
-          throw new Error('Invalid speed. Must be one of [33, 45]')
-          break
-      }
-    }
   }
   add(a) {
     if (a instanceof Album) {
@@ -59,6 +35,47 @@ class Digital extends Release {
 class Vinyl extends Release {
   constructor(opts={}) {
     super(opts)
+    this.size = null
+    this.speed = null
+
+    if (opts.size) {
+      switch (opts.size) {
+        case 7:
+        case 10:
+        case 12:
+          this.size = opts.size
+          break
+        default:
+          throw new Error('Invalid size. Must be one of [7, 10, 12]')
+          break
+      }
+    }
+
+    if (opts.speed) {
+      switch (opts.speed) {
+        case 33:
+        case 45:
+          this.speed = opts.speed
+          break
+        default:
+          throw new Error('Invalid speed. Must be one of [33, 45]')
+          break
+      }
+    }
+
+    if (this.size && this.speed) {
+      this.minutesPerSide = this.sideDurations.get(this.size)[
+        this.speed === 45 ? 0 : 1
+      ]
+    }
+  }
+
+  get sideDurations() {
+    return new Map([
+      [7, [6]],
+      [10, [12, 15]],
+      [12, [15, 22]]
+    ])
   }
 }
 
