@@ -1,13 +1,16 @@
 const Album = require('./album')
+const Asset = require('./asset')
 const Track = require('./track')
 
 class Release {
   constructor(opts={}) {
     this.tracks = []
     this.albums = []
+    this.assets = []
     this.duration = 0.0
-
   }
+
+  // Add an Album or Track to the Release
   add(a) {
     if (a instanceof Album) {
       this.tracks.push(...a.query())
@@ -16,6 +19,8 @@ class Release {
     } else if (a instanceof Track) {
       this.tracks.push(a)
       this.duration += a.duration
+    } else if (a instanceof Asset) {
+      this.assets.push(a)
     } else {
       throw new Error('Must be an Album or a Track')
     }
