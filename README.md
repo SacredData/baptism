@@ -82,7 +82,7 @@ following keys:
 
 `opts.hint`: A string that provides an indication of the function of the asset.
 
-Extends [`nanoresource`](https://github.com/little-core-labs/nanoresource).
+Extends [`nanoresource`](https://github.com/mafintosh/nanoresource).
 
 ### `const flags = bap.flags`
 
@@ -137,8 +137,8 @@ or `12`.
 ### `const track = new bap.Track(filename, [opts])`
 
 An object, which represents a single audio file. Extends
-[nanoresource](https://github.com/little-core-labs/nanoresource). Accepts an
-optional options object to specify track number, via `opts.trackNumber`.
+[nanoresource](https://github.com/mafintosh/nanoresource). Accepts an optional
+`opts` object to specify track number, via `opts.trackNumber`.
 
 #### `track.size(callback)`
 
