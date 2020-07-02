@@ -66,11 +66,15 @@ provides an object containing each `Track` object's probe results.
 Returns object containing validation information for all the `Track` objects
 added to the `Album`.
 
-### `const asset = new bap.Asset(file)`
+### `const asset = new bap.Asset(file, [opts])`
 
 An object, which represents and objectifies a single `Asset` meant to be added
-to an `Album` prior to completion. Extends
-[`nanoresource`](https://github.com/little-core-labs/nanoresource).
+to an `Album` prior to completion. Accepts an optional `opts` object, with the
+following keys:
+
+`opts.hint`: A string that provides an indication of the function of the asset.
+
+Extends [`nanoresource`](https://github.com/little-core-labs/nanoresource).
 
 ### `const flags = bap.flags`
 
