@@ -58,9 +58,8 @@ An object, which provides one or more `Track` objects. Extends
 #### `album.probe(callback)`
 
 Batch processes each `Track` in the `Album`, calling the `Track` object's
-`track.stats()`, `track.silence()`, `track.soxi()` and `track.spectrogram()`
-methods. Callback provides an object containing each `Track` object's probe
-results.
+`track.stats()`, `track.silence()`, and `track.soxi()` methods. Callback
+provides an object containing each `Track` object's probe results.
 
 #### `album.validate`
 
@@ -111,7 +110,7 @@ An object which represents a CD album release product. Extends `Release`.
 
 An object which represents a digital release product. Extends `Release`. 
 
-#### `const vinyl = new Release.Digital([opts])`
+#### `const vinyl = new Release.Vinyl([opts])`
 
 An object which represents a vinyl release product. Extends `Release`.
 
