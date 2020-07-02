@@ -50,7 +50,7 @@ newAlbum.probe((err, res) => {
 
 Import `baptism`.
 
-### `album = new bap.Album(dir)`
+### `const album = new bap.Album(dir)`
 
 An object, which provides one or more `Track` objects. Extends
 [nanoresource-pool](https://github.com/little-core-labs/nanoresource-pool).
@@ -66,6 +66,12 @@ results.
 
 Returns object containing validation information for all the `Track` objects
 added to the `Album`.
+
+### `const asset = new bap.Asset(file)`
+
+An object, which represents and objectifies a single `Asset` meant to be added
+to an `Album` prior to completion. Extends
+[`nanoresource`](https://github.com/little-core-labs/nanoresource).
 
 ### `const flags = bap.flags`
 
@@ -148,3 +154,10 @@ path to the PNG is written returned by the callback, as well as written to
 
 Calls `bap.stats()` on the `Track` object. `track.stats` becomes the data
 object returned by the `bap.stats()` method.
+
+#### `track.waveform(callback)`
+
+Generates a waveform PNG of the `Track`'s file. `track.waveform` becomes the
+base64 byte-string of the generated PNG image. When finished, the output file
+path to the PNG is written returned by the callback, as well as written to
+`track.waveformFile`.
