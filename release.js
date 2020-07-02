@@ -22,7 +22,7 @@ class Release {
     } else if (a instanceof Asset) {
       this.assets.push(a)
     } else {
-      throw new Error('Must be an Album or a Track')
+      throw new Error('Must be an Album, Track, or Asset object')
     }
   }
 }
