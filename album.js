@@ -7,8 +7,9 @@ const { Pool } = require('nanoresource-pool')
 const Track = require('./track')
 
 class Album extends Pool {
-  constructor(dir) {
+  constructor(dir, opts={}) {
     super(Track)
+    this.metadata = {}
     this.duration = 0.0
     this.dir = path.resolve(dir)
     this.sources = fs.readdirSync(this.dir).map(p => `${this.dir}/${p}`)
@@ -19,6 +20,10 @@ class Album extends Pool {
       counter++
       debug('track counter', counter)
       this.add(new Track(source, { trackNumber: counter }))
+    }
+
+    if (opts.metadata) {
+      this.metadata = opts.metadata
     }
   }
 
