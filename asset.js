@@ -9,6 +9,10 @@ class Asset extends Resource {
     this.filename = source
     this.type = mime.getType(this.filename)
     this.fd = 0
+
+    if (opts.hint) {
+      this.hint = opts.hint
+    }
   }
 
   _open (cb) {
