@@ -5,6 +5,7 @@ const fs = require('fs')
 const getSoxi = require('./soxi')
 const getSpectrogram = require('./spectrogram')
 const getStats = require('./stats')
+const mime = require('mime')
 const Resource = require('nanoresource')
 
 class Track extends Resource {
@@ -12,6 +13,7 @@ class Track extends Resource {
     super()
     this.filename = source
     this.fd = 0
+    this.type = mime.getType(this.filename)
 
     if (opts.trackNumber) {
       this.trackNumber = opts.trackNumber
