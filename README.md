@@ -30,17 +30,25 @@ const newAlbum = new bap.Album('./')
 
 newAlbum.probe((err, res) => {
   console.log(res)
+  newAlbum.query()[0].spectrogram((err, spec) => {
+    console.log(`Spectrogram output to: ${spec}`)
+    newAlbum.query()[0].waveform((err, wave) => {
+      console.log(`Waveform output to: ${wave}`)
+    })
+  })
 })
 ```
 
 ```
 {
-  '/home/agrathwohl/code/sacreddata/baptism/example/example.wav': {
+  '/home/gwohl/code/sacreddata/baptism/example/example.wav': {
     duration: 10,
     peak: { db: -0.018041945998171376, value: 0.997925, valid: false },
     rms: { db: -15.695817254036564, value: 0.164138, valid: true }
   }
 }
+Spectrogram output to: /home/gwohl/code/sacreddata/baptism/example/example.wav.png
+Waveform output to: /home/gwohl/code/sacreddata/baptism/example/example.wav_waveform.png
 ```
 
 ## API
