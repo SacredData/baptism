@@ -182,6 +182,13 @@ path to the PNG is written returned by the callback, as well as written to
 Calls `bap.stats()` on the `Track` object. `track.stats` becomes the data
 object returned by the `bap.stats()` method.
 
+#### `track.wav`
+
+When `Track.source` points to a WAV file, `track.wav` will be provided upon
+instantiation, giving full access to the file via the
+[`WaveFile`](https://github.com/rochars/wavefile) npm module. This allows users
+to set/remove RIFF tags, parse WAV chunks, modify WAV formatting, etc.
+
 #### `track.waveform(callback)`
 
 Generates a waveform PNG of the `Track`'s file. `track.waveform` becomes the
