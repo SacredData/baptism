@@ -37,4 +37,10 @@ class Asset extends Resource {
   }
 }
 
-module.exports = Asset
+class CoverArt extends Asset {
+  constructor(source, opts={}) {
+    super(source, Object.assign({ hint: 'coverart' }, opts))
+  }
+}
+
+module.exports = { Asset, CoverArt }
