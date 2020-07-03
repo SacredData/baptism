@@ -1,5 +1,5 @@
 const Album = require('./album')
-const Asset = require('./asset')
+const { Asset } = require('./asset')
 const Track = require('./track')
 
 class Release {
