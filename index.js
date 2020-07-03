@@ -1,5 +1,5 @@
 const Album = require('./album')
-const Asset = require('./asset')
+const { Asset, CoverArt } = require('./asset')
 const Master = require('./master')
 const Release = require('./release')
 const Track = require('./track')
@@ -12,5 +12,5 @@ const debug = require('debug')('baptism:index')
 debug('Welcome to SACRED.AUDIO. This is SACRED1: Baptism.')
 
 module.exports = {
-  Album, Asset, Master, Release, Track, flags, soxi, stats, spectrogram
+  Album, Asset, CoverArt, Master, Release, Track, flags, soxi, stats, spectrogram
 }
