@@ -47,6 +47,18 @@ class Digital extends Release {
   }
 }
 
+class Download extends Digital {
+  constructor(opts={}) {
+    super(opts)
+  }
+}
+
+class Stream extends Digital {
+  constructor(opts={}) {
+    super(opts)
+  }
+}
+
 class Vinyl extends Release {
   constructor(opts={}) {
     super(opts)
@@ -95,5 +107,5 @@ class Vinyl extends Release {
 }
 
 module.exports = {
-  CD, Digital, Release, Vinyl
+  CD, Digital, Download, Release, Stream, Vinyl
 }
