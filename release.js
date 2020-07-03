@@ -24,6 +24,10 @@ class Release {
     } else {
       throw new Error('Must be an Album, Track, or Asset object')
     }
+
+    if (this.minutesPerSide) {
+      this.sides = Number((this.duration / (this.minutesPerSide * 60 * 2)).toFixed(0.1)) + 1
+    }
   }
 }
 
