@@ -106,6 +106,14 @@ Returns an object containing dynamics analysis measurements provided by the
 
 Returns a file path to a PNG of the file's spectrogram
 
+### `const Master = bap.Master(filename, [opts])`
+
+An object representing a mastered music track. Extends `bap.Track`. Accepts an
+optional `opts` object with the following configuration parameters:
+
+`opts.parent`: Specify the `Track` object which served as the premaster source
+file for this `Master`.
+
 ### `const Release = bap.Release`
 
 Class representations of physical and digital audio media products.
