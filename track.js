@@ -8,6 +8,8 @@ const getSpectrogram = require('./spectrogram')
 const getStats = require('./stats')
 const mime = require('mime')
 const Resource = require('nanoresource')
+const WaveFile = require('wavefile').WaveFile
+
 
 class Track extends Resource {
   constructor(source, opts = {}) {
@@ -18,6 +20,13 @@ class Track extends Resource {
 
     if (opts.trackNumber) {
       this.trackNumber = opts.trackNumber
+    }
+
+    if (this.type === 'audio/wav') {
+      this.wav = new WaveFile()
+
+      this.wav.fromBase64(Buffer.from(fs.readFileSync(this.filename))
+        .toString('base64'))
     }
   }
 
