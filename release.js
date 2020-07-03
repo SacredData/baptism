@@ -34,6 +34,10 @@ class Release {
 class CD extends Release {
   constructor(opts={}) {
     super(opts)
+    /*
+     * TODO @agrathwohl
+     * Provide a CUE sheet file path as an option for the constructor
+     */
   }
 }
 
