@@ -106,13 +106,21 @@ Returns an object containing dynamics analysis measurements provided by the
 
 Returns a file path to a PNG of the file's spectrogram
 
-### `const Master = bap.Master(filename, [opts])`
+### `const master = bap.Master(filename, [opts])`
 
 An object representing a mastered music track. Extends `bap.Track`. Accepts an
 optional `opts` object with the following configuration parameters:
 
 `opts.parent`: Specify the `Track` object which served as the premaster source
-file for this `Master`.
+file for this `Master`. This property can also be set later via
+`bap.Master.parent`.
+
+#### `master.compare(callback)`
+
+Compare the `Master` audio file's dynamics and formatting properties with its
+parent `Track`. Performs necessary analyses on the `Master` and `Track` objects
+if the information is not already available. Callback returns an object which
+provides comparison results and validations validations.
 
 ### `const Release = bap.Release`
 
