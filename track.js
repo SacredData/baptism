@@ -1,3 +1,4 @@
+const Asset = require('./asset')
 const debug = require('debug')('baptism:track')
 const flags = require('./flags.json')
 const ffmpeg = require('fluent-ffmpeg')
@@ -110,10 +111,8 @@ class Track extends Resource {
       if (!this.active(cb)) return
       getSpectrogram(this.filename, (err, sp) => {
         if (err) return cb(err)
-        this.spectrogramFile = sp
-        this.spectrogram = Buffer.from(fs.readFileSync(this.spectrogramFile))
-          .toString('base64')
-        this.inactive(cb, null, sp)
+        this.spectrogram = new Asset(sp, { hint: 'image' })
+        this.inactive(cb, null, this.spectrogram)
       })
     })
   }
@@ -143,10 +142,8 @@ class Track extends Resource {
         .on('error', err => { return this.inactive(cb, err) })
         .on('end', () => {
           debug('waveform finished', waveformPath)
-          this.waveformFile = waveformPath
-          this.waveform = Buffer.from(fs.readFileSync(this.waveformFile))
-            .toString('base64')
-          this.inactive(cb, null, waveformPath)
+          this.waveform = new Asset(waveformPath, { hint: 'image' })
+          this.inactive(cb, null, this.waveform)
         })
 
       ffmpegCmd.run()
