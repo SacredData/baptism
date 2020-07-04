@@ -24,9 +24,6 @@ class Album extends Pool {
       if (opts.metadata.comment) {
         this.infoTags.push(['ICMT'], opts.metadata.comment)
       }
-      if (opts.metadata.title) {
-        this.infoTags.push(['INAM', opts.metadata.title])
-      }
       if (opts.metadata.album) {
         this.infoTags.push(['IPRD', opts.metadata.album])
       }
