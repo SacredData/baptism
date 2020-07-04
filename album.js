@@ -3,6 +3,7 @@ const debug = require('debug')('baptism:album')
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
+const { Master, Premaster } = require('./master')
 const { Pool } = require('nanoresource-pool')
 const Track = require('./track')
 
@@ -19,7 +20,7 @@ class Album extends Pool {
     for (const source of this.sources) {
       counter++
       debug('track counter', counter)
-      this.add(new Track(source, { trackNumber: counter }))
+      this.add(new Premaster(source, { trackNumber: counter }))
     }
 
     if (opts.metadata) {
