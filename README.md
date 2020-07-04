@@ -58,10 +58,17 @@ Waveform output to: /home/gwohl/code/sacreddata/baptism/example/example.wav_wave
 
 Import `baptism`.
 
-### `const album = new bap.Album(dir)`
+### `const album = new bap.Album(dir, [opts])`
 
 An object, which provides one or more `Track` objects. Extends
 [nanoresource-pool](https://github.com/little-core-labs/nanoresource-pool).
+
+The optional `opts` object allows for designating the following flags:
+
+`opts.metadata`: An object to specify metadata about the `Album`. Accepted keys
+are `opts.metadata.artist`, `opts.metadata.album`, `opts.metadata.title`, and
+`opts.metadata.comment`. This metadata will be written to any WAVs output from
+the `Album` object.
 
 #### `album.probe(callback)`
 
@@ -121,6 +128,10 @@ Compare the `Master` audio file's dynamics and formatting properties with its
 parent `Track`. Performs necessary analyses on the `Master` and `Track` objects
 if the information is not already available. Callback returns an object which
 provides comparison results and validations validations.
+
+### `const premaster = bap.Premaster(filename, [opts])`
+
+> WIP
 
 ### `const Release = bap.Release`
 
