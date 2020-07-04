@@ -12,5 +12,5 @@ const debug = require('debug')('baptism:index')
 debug('Welcome to SACRED.AUDIO. This is SACRED1: Baptism.')
 
 module.exports = {
-  Album, Asset, CoverArt, Master, Release, Track, flags, soxi, stats, spectrogram
+  Album, Asset, CoverArt, Master, Premaster, Release, Track, flags, soxi, stats, spectrogram
 }
