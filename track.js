@@ -18,6 +18,10 @@ class Track extends Resource {
     this.fd = 0
     this.type = mime.getType(this.filename)
 
+    if (opts.tags) {
+      this.tags = opts.tags
+    }
+
     if (opts.trackNumber) {
       this.trackNumber = opts.trackNumber
     }
@@ -27,6 +31,12 @@ class Track extends Resource {
 
       this.wav.fromBase64(Buffer.from(fs.readFileSync(this.filename))
         .toString('base64'))
+
+      if (this.tags) {
+        for (const tag of this.tags) {
+          this.wav.setTag(...tag)
+        }
+      }
     }
   }
 
