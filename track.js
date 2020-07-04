@@ -1,4 +1,4 @@
-const Asset = require('./asset')
+const { Asset } = require('./asset')
 const debug = require('debug')('baptism:track')
 const flags = require('./flags.json')
 const ffmpeg = require('fluent-ffmpeg')
