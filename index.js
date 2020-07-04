@@ -1,6 +1,6 @@
 const Album = require('./album')
 const { Asset, CoverArt } = require('./asset')
-const Master = require('./master')
+const { Master, Premaster } = require('./master')
 const Release = require('./release')
 const Track = require('./track')
 const flags = require('./flags.json')
