@@ -1,5 +1,12 @@
 const Track = require('./track')
 
+
+class Premaster extends Track {
+  constructor(source, opts={}) {
+    super(source, opts)
+  }
+}
+
 class Master extends Track {
   constructor(source, opts={}) {
     super(source, opts)
@@ -20,4 +27,4 @@ class Master extends Track {
   }
 }
 
-module.exports = Master
+module.exports = { Master, Premaster }
