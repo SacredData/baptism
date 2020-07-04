@@ -8,13 +8,11 @@ function parseStats(st) {
     duration: stats[1],
     peak: {
       db: 20 * Math.log10( stats[3] ),
-      value: stats[3],
-      valid: stats[3] <= 0.7 // -3dBFS
+      value: stats[3]
     },
     rms: {
       db: 20 * Math.log10( stats[8] ),
-      value: stats[8],
-      valid: stats[8] <= 0.25 && stats[8] >= 0.03 // low: -30dB; high: -12dB
+      value: stats[8]
     }
   }
   return statsObj

@@ -66,8 +66,7 @@ class Album extends Pool {
         channels: this.query().every((tr, i, arr) => tr.format.channels === 2),
         sampleRate: this.query().every((tr, i, arr) => tr.format.sampleRate === arr[0].format.sampleRate)
       },
-      silences: this.query().every(tr => tr.silences.start && tr.silences.end),
-      stats: this.query().every(tr => tr.stats.peak.valid && tr.stats.rms.valid)
+      silences: this.query().every(tr => tr.silences.start && tr.silences.end)
     }
 
     return this.ready = validations
