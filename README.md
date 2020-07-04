@@ -69,7 +69,8 @@ meant to be added to an `Album`, while a `Master` is meant to be added to a
 An `Album` is instantiated by passing it a directory of WAV files. In order to
 guarantee proper track ordering, ensure WAV file path basenames begin with a
 [leading zero](https://en.wikipedia.org/wiki/Leading_zero), then the track number,
-followed by the track title, i.e., `03 - This Is A Song Title.wav`.
+followed by the track title, i.e., `03 - This Is A Song Title.wav`. Other files
+present in the directory lacking the `.wav` file extension will be ignored.
 
 A `Release` is an objectified version of a physical or digital music release,
 and it can be instantiated by calling `new Baptism.Release`. However, it is 
