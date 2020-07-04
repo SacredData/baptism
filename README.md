@@ -51,6 +51,39 @@ Spectrogram output to: /home/gwohl/code/sacreddata/baptism/example/example.wav.p
 Waveform output to: /home/gwohl/code/sacreddata/baptism/example/example.wav_waveform.png
 ```
 
+## Usage
+
+### Audio Files
+
+`Baptism` only works on WAV audio files and its extension formats, such as
+broadcast wave (BWF).
+
+A WAV file is objectified by instantiating a `new Baptism.Track`, or its
+extension classes, `Premaster` and `Master`. However, it is recommended to use 
+the `Album` or `Release` classes to create `Track` objects. A `Premaster` is 
+meant to be added to an `Album`, while a `Master` is meant to be added to a 
+`Release`.
+
+### Releases
+
+An `Album` is instantiated by passing it a directory of WAV files. In order to
+guarantee proper track ordering, ensure WAV file path basenames begin with a
+[leading zero](https://en.wikipedia.org/wiki/Leading_zero), then the track number,
+followed by the track title, i.e., `03 - This Is A Song Title.wav`.
+
+A `Release` is an objectified version of a physical or digital music release,
+and it can be instantiated by calling `new Baptism.Release`. However, it is 
+recommended to call one of its class extensions, `Vinyl`, `Stream`, `Download`,
+and `CD`. An `Album` can be added to a `Release` via its `Release.add()` method.
+
+### Assets
+
+An ancillary file asset such as a cover art image, a cue sheet, credits, etc., 
+may be objectified by the `Asset` class. It can be instantiated via 
+`new Baptism.Asset`. Certain class extensions exist for specific asset features
+, including `CoverArt`. Additional class extensions are in development and 
+forthcoming in a future release.
+
 ## API
 > WIP
 
