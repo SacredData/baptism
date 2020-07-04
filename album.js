@@ -15,16 +15,31 @@ class Album extends Pool {
     this.dir = path.resolve(dir)
     this.sources = fs.readdirSync(this.dir).map(p => `${this.dir}/${p}`)
       .filter(f => path.extname(f) === '.wav')
+    this.infoTags = []
+
+    if (opts.metadata) {
+      if (opts.metadata.artist) {
+        this.infoTags.push(['IART', opts.metadata.artist])
+      }
+      if (opts.metadata.comment) {
+        this.infoTags.push(['ICMT'], opts.metadata.comment)
+      }
+      if (opts.metadata.title) {
+        this.infoTags.push(['INAM', opts.metadata.title])
+      }
+      if (opts.metadata.album) {
+        this.infoTags.push(['IPRD', opts.metadata.album])
+      }
+    }
 
     let counter = 0
     for (const source of this.sources) {
       counter++
       debug('track counter', counter)
-      this.add(new Premaster(source, { trackNumber: counter }))
-    }
-
-    if (opts.metadata) {
-      this.metadata = opts.metadata
+      this.add(new Premaster(source, {
+        trackNumber: counter,
+        tags: this.infoTags
+      }))
     }
   }
 
