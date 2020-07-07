@@ -159,13 +159,17 @@ file for this `Master`. This property can also be set later via
 #### `master.compare(callback)`
 
 Compare the `Master` audio file's dynamics and formatting properties with its
-parent `Track`. Performs necessary analyses on the `Master` and `Track` objects
-if the information is not already available. Callback returns an object which
-provides comparison results and validations validations.
+parent `Track` or `Premaster`. Performs necessary analyses on the `Master` and 
+`Track` objects if the information is not already available. Callback returns an
+object which provides comparison results and value deltas.
 
 ### `const premaster = bap.Premaster(filename, [opts])`
 
-> WIP
+An object representing a `Track` which has been prepared as a *premaster*. This
+is a common form of audio asset that is delivered to a mastering engineer.
+
+Same as declaring a `Track` except for the extra properties that limit its data
+scope.
 
 ### `const Release = bap.Release`
 
