@@ -4,12 +4,17 @@ const Track = require('./track')
 class Premaster extends Track {
   constructor(source, opts={}) {
     super(source, opts)
+    if (opts.version) {
+      this.version = opts.version
+    }
   }
 }
 
 class Master extends Track {
   constructor(source, opts={}) {
     super(source, opts)
+
+    this.revision = null
 
     this.parent = null
 
@@ -19,6 +24,10 @@ class Master extends Track {
       } else {
         throw new Error(`Invalid opts.parent: must be an instance of bap.Track`)
       }
+    }
+
+    if (this.revision) {
+      this.revision = revision
     }
   }
 
