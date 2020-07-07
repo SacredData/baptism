@@ -33,6 +33,10 @@ class Master extends Track {
 
   compare (cb) {
     if (!this.parent) cb(new Error(`No parent, add one to the Master first.`))
+    return {
+      peak: this.stats.peak.db - this.parent.stats.peak.db,
+      rms: this.stats.rms.db - this.parent.stats.rms.db,
+    }
   }
 }
 
