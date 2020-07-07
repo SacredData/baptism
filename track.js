@@ -29,8 +29,7 @@ class Track extends Resource {
     if (this.type === 'audio/wav') {
       this.wav = new WaveFile()
 
-      this.wav.fromBase64(Buffer.from(fs.readFileSync(this.filename))
-        .toString('base64'))
+      this.wav.fromBuffer(Buffer.from(fs.readFileSync(this.filename)))
 
       if (this.tags) {
         for (const tag of this.tags) {
