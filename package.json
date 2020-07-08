@@ -11,6 +11,7 @@
   "dependencies": {
     "batch": "^0.6.1",
     "debug": "^4.1.1",
+    "disconnect": "^1.2.1",
     "fluent-ffmpeg": "^2.1.2",
     "little-process-box": "^0.2.3",
     "mime": "^2.4.6",
