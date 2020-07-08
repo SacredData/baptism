@@ -1,6 +1,9 @@
 const Album = require('./album')
+const Baptism = require('./index')
 const { Asset } = require('./asset')
 const Track = require('./track')
+
+const Discogs = require('disconnect').Client
 
 class Release {
   constructor(opts={}) {
@@ -28,6 +31,17 @@ class Release {
     if (this.minutesPerSide) {
       this.sides = Number((this.duration / (this.minutesPerSide * 60 * 2)).toFixed(0.1)) + 1
     }
+  }
+
+  fromDiscogs(id) {
+    const db = new Discogs().database()
+    db.getRelease(id, (err, data) => {
+      if (err) return cb(err)
+      const releaseFormat = data.formats.filter(df => df.name === 'Vinyl')
+      if (this instanceof Vinyl && releaseFormat.length > 0) {
+        this.dbData = data
+      }
+    })
   }
 }
 
