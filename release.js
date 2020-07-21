@@ -28,7 +28,8 @@ class Release {
     }
 
     if (this.minutesPerSide) {
-      this.sides = Number((this.duration / (this.minutesPerSide * 60 * 2)).toFixed(0.1)) + 1
+      this.sides = Number((this.duration / (this.minutesPerSide * 60 * 2))
+        .toFixed(0.1)) + 1
     }
   }
 
