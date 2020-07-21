@@ -1,5 +1,4 @@
 const Album = require('./album')
-const Baptism = require('./index')
 const { Asset } = require('./asset')
 const Track = require('./track')
 
