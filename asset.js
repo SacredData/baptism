@@ -16,9 +16,14 @@ class Asset extends Resource {
       this.hint = opts.hint
     }
 
-    if (this.type.includes('image') || this.hint === 'image') {
-      this.binary = Buffer.from(fs.readFileSync(this.filename))
-        .toString('base64')
+    try {
+      if (this.type.includes('image') || this.hint === 'image') {
+        this.binary = Buffer.from(fs.readFileSync(this.filename))
+          .toString('base64')
+      }
+    } catch (err) {
+      console.error('Binary generation failed! This should not happen.')
+      throw new Error(err)
     }
   }
 
