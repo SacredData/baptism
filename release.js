@@ -37,9 +37,16 @@ class Release {
     const db = new Discogs().database()
     db.getRelease(id, (err, data) => {
       if (err) return cb(err)
-      const releaseFormat = data.formats.filter(df => df.name === 'Vinyl')
-      if (this instanceof Vinyl && releaseFormat.length > 0) {
-        this.dbData = data
+      if (this instanceof Vinyl) {
+        const releaseFormat = data.formats.filter(df => df.name === 'Vinyl')
+        if (releaseFormat.length > 0) {
+          this.dbData = data
+        }
+      } else if (this instanceof CD) {
+        const releaseFormat = data.formats.filter(df => df.name === 'CD')
+        if (releaseFormat.length > 0) {
+          this.dbData = data
+        }
       }
     })
   }
