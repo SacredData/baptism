@@ -26,17 +26,24 @@ class Track extends Resource {
       this.trackNumber = opts.trackNumber
     }
 
-    if (this.type === 'audio/wav') {
-      this.wav = new WaveFile()
+    try {
+      if (this.type === 'audio/wav') {
+        this.wav = new WaveFile()
 
-      this.wav.fromBuffer(Buffer.from(fs.readFileSync(this.filename)))
+        this.wav.fromBuffer(Buffer.from(fs.readFileSync(this.filename)))
 
-      if (this.tags) {
-        for (const tag of this.tags) {
-          this.wav.setTag(...tag)
+        if (this.tags) {
+          for (const tag of this.tags) {
+            this.wav.setTag(...tag)
+          }
         }
       }
+    } catch (err) {
+      console.error('Error occurred during Track instantiation! This should ' +
+        'not happen. Something is very wrong.')
+      throw new Error(err)
     }
+
   }
 
   _open (cb) {

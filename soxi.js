@@ -3,11 +3,16 @@ const path = require('path')
 const spawn = require('child_process').spawn
 
 function parseSoxi(soxiStr) {
-  const soxiStats = soxiStr.split('\n').filter(f => f !== '').map(m => m.split(': ')[1])
-  return {
-    channels: Number(soxiStats[1]),
-    sampleRate: Number(soxiStats[2]),
-    bitDepth: Number(soxiStats[3].split('-bit')[0])
+  try {
+    const soxiStats = soxiStr.split('\n').filter(f => f !== '').map(m => m.split(': ')[1])
+    return {
+      channels: Number(soxiStats[1]),
+      sampleRate: Number(soxiStats[2]),
+      bitDepth: Number(soxiStats[3].split('-bit')[0])
+    }
+  } catch (err) {
+    console.error('Could not parse soxi output. How did that happen???')
+    throw new Error(err)
   }
 }
 
