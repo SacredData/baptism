@@ -3,19 +3,23 @@ const path = require('path')
 const { spawn } = require('child_process')
 
 function parseStats(st) {
-  const stats = `${st}`.split('\n').map(stat => { return Number(stat.split(':')[1]) })
-  const statsObj =  {
-    duration: stats[1],
-    peak: {
-      db: 20 * Math.log10( stats[3] ),
-      value: stats[3]
-    },
-    rms: {
-      db: 20 * Math.log10( stats[8] ),
-      value: stats[8]
+  try {
+    const stats = `${st}`.split('\n').map(stat => { return Number(stat.split(':')[1]) })
+    const statsObj =  {
+      duration: stats[1],
+      peak: {
+        db: 20 * Math.log10( stats[3] ),
+        value: stats[3]
+      },
+      rms: {
+        db: 20 * Math.log10( stats[8] ),
+        value: stats[8]
+      }
     }
+    return statsObj
+  } catch (err) {
+    throw new Error(err)
   }
-  return statsObj
 }
 
 function main(file, cb) {
