@@ -41,6 +41,17 @@ class Release {
         const releaseFormat = data.formats.filter(df => df.name === 'Vinyl')
         if (releaseFormat.length > 0) {
           this.dbData = data
+
+          if (this.dbData.formats) { // auto-fill vinyl format data if avail
+            const formatDesc = this.dbData.formats[0].descriptions
+            for (const desc of formatDesc) {
+              if (desc.includes('"')) {
+                this.size = Number(desc.replace('"', ''))
+              } else if (desc.includes('RPM')) {
+                this.speed = Number(desc.replace('RPM', '').replace(' ', ''))
+              }
+            }
+          }
         }
       } else if (this instanceof CD) {
         const releaseFormat = data.formats.filter(df => df.name === 'CD')
