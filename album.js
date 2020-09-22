@@ -75,11 +75,15 @@ class Album extends Pool {
   get validate() {
     const validations = {
       format: {
-        bitDepth: this.query().every((tr, i, arr) => tr.format.bitDepth === arr[0].format.bitDepth),
-        channels: this.query().every((tr, i, arr) => tr.format.channels === 2),
-        sampleRate: this.query().every((tr, i, arr) => tr.format.sampleRate === arr[0].format.sampleRate)
+        bitDepth: this.query()
+          .every((tr, i, arr) => tr.format.bitDepth === arr[0].format.bitDepth),
+        channels: this.query()
+          .every((tr, i, arr) => tr.format.channels === 2),
+        sampleRate: this.query()
+          .every((tr, i, arr) => tr.format.sampleRate === arr[0].format.sampleRate)
       },
-      silences: this.query().every(tr => tr.silences.start && tr.silences.end)
+      silences: this.query()
+        .every(tr => tr.silences.start && tr.silences.end)
     }
 
     return this.ready = validations
