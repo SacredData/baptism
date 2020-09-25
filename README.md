@@ -250,3 +250,4 @@ Generates a waveform PNG of the `Track`'s file. `track.waveform` becomes the
 base64 byte-string of the generated PNG image. When finished, the output file
 path to the PNG is written returned by the callback, as well as written to
 `track.waveformFile`.
+
