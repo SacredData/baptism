@@ -21,6 +21,12 @@ new audio and music projects.
 $ npm -i baptism
 ```
 
+### Dependencies
+
+This module utilizes some open source and/or GPL command line media processing
+tools. It expects there to be binaries for `ffmpeg` and `sox` inside the user's
+`PATH`.
+
 ## Example
 
 ```js
