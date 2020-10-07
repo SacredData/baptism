@@ -61,6 +61,18 @@ class Track extends Resource {
     fs.close(this.fd, cb)
   }
 
+  fingerprint (cb) {
+    this.open((err) => {
+      if (err) return cb(err)
+      if (!this.active(cb)) return
+      fingerprint(this.filename, (err, fp) => {
+        if (err) return cb(err)
+        this.fp = fp
+        this.inactive(cb, null, fp)
+      })
+    })
+  }
+
   silence (cb) {
     this.open((err) => {
       if (err) return cb(err)
@@ -127,18 +139,6 @@ class Track extends Resource {
         if (err) return cb(err)
         this.format = so
         this.inactive(cb, null, so)
-      })
-    })
-  }
-
-  fingerprint (cb) {
-    this.open((err) => {
-      if (err) return cb(err)
-      if (!this.active(cb)) return
-      fingerprint(this.filename, (err, fp) => {
-        if (err) return cb(err)
-        this.fingerprint = fp
-        this.inactive(cb, null, fp)
       })
     })
   }
