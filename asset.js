@@ -44,7 +44,7 @@ class Asset extends Resource {
 
 class CoverArt extends Asset {
   constructor(source, opts={}) {
-    super(source, Object.assign({ hint: 'coverart' }, opts))
+    super(source, Object.assign({ hint: 'image' }, opts))
   }
 }
 
