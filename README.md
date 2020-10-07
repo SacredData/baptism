@@ -124,12 +124,17 @@ added to the `Album`.
 ### `const asset = new bap.Asset(file, [opts])`
 
 An object, which represents and objectifies a single `Asset` meant to be added
-to an `Album` prior to completion. Accepts an optional `opts` object, with the
-following keys:
+to an `Album` or `Release` prior to completion. Accepts an optional `opts`
+object, with the following keys:
 
 `opts.hint`: A string that provides an indication of the function of the asset.
 
 Extends [`nanoresource`](https://github.com/mafintosh/nanoresource).
+
+#### `const coverArt = new bap.CoverArt(file, [opts])`
+
+Extends `Asset` to provide specific functionality for cover art images. Adds
+`{ hint: 'image' }` opt upon instantiation.
 
 ### `const flags = bap.flags`
 
