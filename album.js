@@ -42,7 +42,7 @@ class Album extends Pool {
 
   probe(callback) {
     const probes = {}
-    const batch = new Batch().concurrency(2)
+    const batch = new Batch().concurrency(4)
     for (const source of this.query()) {
       batch.push((next) => {
         source.stats((err, info) => {
@@ -50,11 +50,20 @@ class Album extends Pool {
           probes[source.filename] = info
           source.silence((err) => {
             if (err) debug(err)
-            source.soxi((err) => {
-              if (err) debug(err)
-              next(null)
-            })
+            next(null)
           })
+        })
+      })
+      batch.push((next) => {
+        source.fingerprint((err) => {
+          if (err) debug(err)
+          next(null)
+        })
+      })
+      batch.push((next) => {
+        source.soxi((err) => {
+          if (err) debug(err)
+          next(null)
         })
       })
     }
