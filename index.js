@@ -3,6 +3,7 @@ const { Asset, CoverArt } = require('./asset')
 const { Master, Premaster } = require('./master')
 const { CD, Digital, Download, Release, Stream, Vinyl } = require('./release')
 const Track = require('./track')
+const fingerprint = require('./fingerprint')
 const flags = require('./flags.json')
 const soxi = require('./soxi')
 const stats = require('./stats')
@@ -13,5 +14,5 @@ debug('Welcome to SACRED.AUDIO. This is SACRED1: Baptism.')
 
 module.exports = {
   Album, Asset, CD, CoverArt, Digital, Download, Master, Premaster, Release,
-  Stream, Track, Vinyl, flags, soxi, stats, spectrogram
+  Stream, Track, Vinyl, fingerprint, flags, soxi, stats, spectrogram
 }

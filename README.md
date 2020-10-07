@@ -211,6 +211,11 @@ An object, which represents a single audio file. Extends
 [nanoresource](https://github.com/mafintosh/nanoresource). Accepts an optional
 `opts` object to specify track number, via `opts.trackNumber`.
 
+#### `track.fingerprint(callback)`
+
+Generates a buffer of the raw fpcalc audio fingerprint for the `Track`. Writes
+the data to `Track.fp` as a buffer. Callback returns the fingerprint buffer.
+
 #### `track.size(callback)`
 
 Callback returns the file size of the file belonging to the `Track`.

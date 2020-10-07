@@ -1,5 +1,6 @@
 const { Asset } = require('./asset')
 const debug = require('debug')('baptism:track')
+const fingerprint = require('./fingerprint')
 const flags = require('./flags.json')
 const ffmpeg = require('fluent-ffmpeg')
 const fs = require('fs')
@@ -126,6 +127,18 @@ class Track extends Resource {
         if (err) return cb(err)
         this.format = so
         this.inactive(cb, null, so)
+      })
+    })
+  }
+
+  fingerprint (cb) {
+    this.open((err) => {
+      if (err) return cb(err)
+      if (!this.active(cb)) return
+      fingerprint(this.filename, (err, fp) => {
+        if (err) return cb(err)
+        this.fingerprint = fp
+        this.inactive(cb, null, fp)
       })
     })
   }
