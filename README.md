@@ -221,6 +221,15 @@ An object, which represents a single audio file. Extends
 Generates a buffer of the raw fpcalc audio fingerprint for the `Track`. Writes
 the data to `Track.fp` as a buffer. Callback returns the fingerprint buffer.
 
+#### `track.peaks(callback)`
+
+Generates an Array of audio peaks data for the `Track`, for use in libraries
+such as [wavesurfer](https://wavesurfer-js.org/) and
+[peaks.js](https://github.com/bbc/peaks.js?files=1).
+
+This data is then scaled to [-1...1] and stored in `track.peaksData`. The
+callback also returns this scaled Array of peaks data.
+
 #### `track.size(callback)`
 
 Callback returns the file size of the file belonging to the `Track`.
