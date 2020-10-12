@@ -4,6 +4,7 @@ const fingerprint = require('./fingerprint')
 const flags = require('./flags.json')
 const ffmpeg = require('fluent-ffmpeg')
 const fs = require('fs')
+const peaks = require('./peaks')
 const getSoxi = require('./soxi')
 const getSpectrogram = require('./spectrogram')
 const getStats = require('./stats')
@@ -69,6 +70,18 @@ class Track extends Resource {
         if (err) return cb(err)
         this.fp = fp
         this.inactive(cb, null, fp)
+      })
+    })
+  }
+
+  peaks (cb) {
+    this.open((err) => {
+      if (err) return cb(err)
+      if (!this.active(cb)) return
+      peaks(this.filename, (err, pd) => {
+        if (err) return cb(err)
+        this.peaksData = pd
+        this.inactive(cb, null, pd)
       })
     })
   }
