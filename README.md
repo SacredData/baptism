@@ -24,8 +24,13 @@ $ npm -i baptism
 ### Dependencies
 
 This module utilizes some open source and/or GPL command line media processing
-tools. It expects there to be binaries for `ffmpeg` and `sox` inside the user's
-`PATH`.
+tools. It expects there to be binaries for the following inside the user's
+`PATH`:
+
+* ffmpeg
+* sox
+* soxi
+* audiowaveform
 
 ## Example
 
