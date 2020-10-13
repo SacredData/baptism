@@ -21,7 +21,8 @@ function main(audioFile, cb) {
     `${path.resolve(audioFile)}.json`,
     '--pixels-per-second',
     '20'
-  ]).on('close', code => {
+  ]).on('error', err => cb(err))
+    .on('close', code => {
     debug(`audiowaveform command closed with exit code ${code}`)
     const scaledPeaks = scalePeaks(
       JSON.parse(
