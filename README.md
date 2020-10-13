@@ -27,10 +27,11 @@ This module utilizes some open source and/or GPL command line media processing
 tools. It expects there to be binaries for the following inside the user's
 `PATH`:
 
+* audiowaveform
 * ffmpeg
+* fpcalc
 * sox
 * soxi
-* audiowaveform
 
 ## Example
 
@@ -120,6 +121,14 @@ the `Album` object.
 Batch processes each `Track` in the `Album`, calling the `Track` object's
 `track.stats()`, `track.silence()`, and `track.soxi()` methods. Callback
 provides an object containing each `Track` object's probe results.
+
+```js
+album.probe((err, probeResults) => {
+  // All tracks have been fully introspected
+  if (err) { cb(err) }
+  cb(null, probeResults)
+})
+```
 
 #### `album.validate`
 
