@@ -130,6 +130,18 @@ album.probe((err, probeResults) => {
 })
 ```
 
+#### `album.query()`
+
+Returns an array of `Track` objects attached to the `Album`.
+
+```js
+album.probe((err, probeResults) => {
+  // All tracks are ready to query
+  if (err) { cb(err) }
+  cb(null, album.query()[2]) // Callback with third track on album
+})
+```
+
 #### `album.validate`
 
 Returns object containing validation information for all the `Track` objects
@@ -208,7 +220,7 @@ Class representations of physical and digital audio media products.
 
 #### `Release.add(item)`
 
-Add an `Album` or a single `Track` to the `Release` object.
+Add an  `Asset`, `Album`, or a single `Track` to the `Release` object.
 
 #### `const cd = new Release.CD([opts])`
 
