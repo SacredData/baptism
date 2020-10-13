@@ -145,6 +145,12 @@ Extends `Asset` to provide specific functionality for cover art images. Adds
 
 An object containing command line flags for various spawned child processes.
 
+### `bap.peaks(filename, callback)`
+
+Calculates the audio waveform peaks into a scaled Array [-1...1], allowing it
+to be used to generate waveforms in the leading JavaScript-based waveform
+libraries in use on the modern web. Callback returns the Array of peaks data.
+
 ### `bap.soxi(filename, callback)`
 Callback returns an object containing media file formatting metadata, such as
 bit depth, sampling frequency, and channel count. Information is provided by
